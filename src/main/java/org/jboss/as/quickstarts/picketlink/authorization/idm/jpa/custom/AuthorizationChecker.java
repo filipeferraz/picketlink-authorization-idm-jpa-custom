@@ -74,8 +74,8 @@ public class AuthorizationChecker {
         List<AuthorizationRelationship> result = query.getResultList();
 
         Set<CustomDepartment> departments = new HashSet<CustomDepartment>();
-        for (int i=0; i<result.size(); i++) {
-            departments.add(result.get(i).getCustomDepartment());
+        for (AuthorizationRelationship relationship : result) {
+            departments.add(relationship.getCustomDepartment());
         }
         return new ArrayList<CustomDepartment>(departments);
     }
@@ -90,8 +90,8 @@ public class AuthorizationChecker {
 
         Set<CustomResource> customResources = new HashSet<CustomResource>();
 
-        for (int i=0; i<result.size(); i++) {
-            customResources.add(result.get(i).getCustomResource());
+        for (PermissionRelationship relationship : result) {
+            customResources.add(relationship.getCustomResource());
         }
 
         return new ArrayList<CustomResource>(customResources);
@@ -107,8 +107,8 @@ public class AuthorizationChecker {
 
         Set<CustomRole> roles = new HashSet<CustomRole>();
 
-        for (int i=0; i<result.size(); i++) {
-            roles.add(result.get(i).getCustomRole());
+        for (AuthorizationRelationship relationship : result) {
+            roles.add(relationship.getCustomRole());
         }
 
         return new ArrayList<CustomRole>(roles);
