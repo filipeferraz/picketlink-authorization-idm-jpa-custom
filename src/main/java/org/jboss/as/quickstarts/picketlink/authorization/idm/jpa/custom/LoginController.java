@@ -55,7 +55,7 @@ public class LoginController {
                             + "before trying again."));
             return null;
         } else {
-            return "/protected/department.xhtml";
+        	return "/protected/login.xhtml?faces-redirect=true";
         }
     }
 
