@@ -88,11 +88,11 @@ public class IDMInitializer {
 
         // Create roles
 
-        CustomRole usuario = new CustomRole("user");
-        identityManager.add(usuario);
+        CustomRole sales = new CustomRole("sales");
+        identityManager.add(sales);
 
-        CustomRole admin = new CustomRole("admin");
-        identityManager.add(admin);
+        CustomRole manager = new CustomRole("manager");
+        identityManager.add(manager);
 
         // Create resources
 
@@ -109,21 +109,21 @@ public class IDMInitializer {
 
         // Add authorization relationship
 
-        relationshipManager.add(new AuthorizationRelationship(john, newYorkDep, application, admin));
-        relationshipManager.add(new AuthorizationRelationship(john, miamiDepartment, application, admin));
-        relationshipManager.add(new AuthorizationRelationship(john, orlandoDepartment, application, admin));
+        relationshipManager.add(new AuthorizationRelationship(john, newYorkDep, application, manager));
+        relationshipManager.add(new AuthorizationRelationship(john, miamiDepartment, application, manager));
+        relationshipManager.add(new AuthorizationRelationship(john, orlandoDepartment, application, manager));
 
-        relationshipManager.add(new AuthorizationRelationship(mary, miamiDepartment, application, usuario));
+        relationshipManager.add(new AuthorizationRelationship(mary, miamiDepartment, application, sales));
 
-        relationshipManager.add(new AuthorizationRelationship(jane, orlandoDepartment, application, usuario));
+        relationshipManager.add(new AuthorizationRelationship(jane, orlandoDepartment, application, sales));
 
         // Add permission relationship
 
-        relationshipManager.add(new PermissionRelationship(application, admin, acme));
+        relationshipManager.add(new PermissionRelationship(application, manager, acme));
 
-        relationshipManager.add(new PermissionRelationship(application, usuario, umbrella));
+        relationshipManager.add(new PermissionRelationship(application, sales, umbrella));
 
-        relationshipManager.add(new PermissionRelationship(application, usuario, wayne));
+        relationshipManager.add(new PermissionRelationship(application, sales, wayne));
 
     }
 }

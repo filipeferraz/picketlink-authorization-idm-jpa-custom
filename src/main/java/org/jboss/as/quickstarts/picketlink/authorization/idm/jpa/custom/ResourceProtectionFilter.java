@@ -88,26 +88,26 @@ public class ResourceProtectionFilter implements Filter {
         Identity identity = getIdentity();
         Partition partition = identity.getAccount().getPartition(); // this is safe
 
-        // Carregar os papéis que o usuário tem acesso no departamento selecionado
-        List<CustomRole> papeis = authorizationChecker.getRoles(authorizationData.getDepartment());
+        // Load roles associed with the selected department
+        List<CustomRole> roles = authorizationChecker.getRoles(authorizationData.getDepartment());
 
-        // Carregar caminhos autorizados
+        // Load authorized roles
         Set<CustomResource> customResources = new HashSet<CustomResource>();
-        for (int i=0; i < papeis.size(); i++) {
-            customResources.addAll(authorizationChecker.getResources(papeis.get(i)));
+        for (CustomRole role : roles) {
+            customResources.addAll(authorizationChecker.getResources(role));
         }
 
-        boolean acessoAutorizado = false;
+        boolean grantAccess = false;
 
         for (CustomResource customResource : customResources) {
             String allowedRealmBaseURI = getRealmBaseURI(httpRequest) + "/" + customResource.getPath();
             if (httpRequest.getRequestURI().startsWith(allowedRealmBaseURI)) {
-                acessoAutorizado = true;
+                grantAccess = true;
             }
         }
 
         // let's check if the user trying to access a resource from his realm. if not deny.
-        return acessoAutorizado;
+        return grantAccess;
     }
 
     private void forwardAccessAssignDepartment(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws ServletException, IOException {
