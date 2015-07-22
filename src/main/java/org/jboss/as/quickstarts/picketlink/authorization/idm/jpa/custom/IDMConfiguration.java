@@ -32,7 +32,7 @@ import org.picketlink.idm.jpa.model.sample.simple.PasswordCredentialTypeEntity;
 import org.picketlink.idm.jpa.model.sample.simple.RelationshipIdentityTypeEntity;
 import org.picketlink.idm.jpa.model.sample.simple.RelationshipTypeEntity;
 import org.picketlink.idm.model.Relationship;
-import org.picketlink.internal.EEJPAContextInitializer;
+//import org.picketlink.internal.EEJPAContextInitializer;
 
 /**
  * This bean produces the configuration for PicketLink IDM
@@ -44,8 +44,8 @@ import org.picketlink.internal.EEJPAContextInitializer;
 @ApplicationScoped
 public class IDMConfiguration {
 
-    @Inject
-    private EEJPAContextInitializer contextInitializer;
+//    @Inject
+//    private EEJPAContextInitializer contextInitializer;
 
     private IdentityConfiguration identityConfig = null;
 
@@ -82,10 +82,10 @@ public class IDMConfiguration {
                                 PasswordCredentialTypeEntity.class,
                                 AttributeTypeEntity.class)
                         .supportGlobalRelationship(Relationship.class)
-                        .addContextInitializer(this.contextInitializer)
+//                        .addContextInitializer(this.contextInitializer)
                         // Specify that this identity store configuration supports all features
-                        .setCredentialHandlerProperty(PasswordCredentialHandler.SUPPORTED_ACCOUNT_TYPES_PROPERTY, CustomUser.class)
-                        .setCredentialHandlerProperty(PasswordCredentialHandler.LOGIN_NAME_PROPERTY, "userName")
+//                        .setCredentialHandlerProperty(PasswordCredentialHandler.SUPPORTED_ACCOUNT_TYPES_PROPERTY, CustomUser.class)
+//                        .setCredentialHandlerProperty(PasswordCredentialHandler.LOGIN_NAME_PROPERTY, "userName")
                         .supportAllFeatures();
 
         identityConfig = builder.build();
